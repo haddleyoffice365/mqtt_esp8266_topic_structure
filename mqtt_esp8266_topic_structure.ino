@@ -5,7 +5,7 @@ const char* THING_NAME = "thing1";
 
 const char* ssid = "<WIFI NAME>";
 const char* password = "<WIFI PASSWORD>"
-const char* mqtt_server = "192.168.1.5";
+const char* mqtt_server = "<MQTT BROKER ADDRESS>";
 const int CONNECTED_FAN = 4; // GOIP D2
 
 WiFiClient espClient;
@@ -18,7 +18,6 @@ int value = 0;
 void setup_wifi() {
 
   delay(10);
-  // We start by connecting to a WiFi network
   Serial.println();
   Serial.print("Connecting to ");
   Serial.println(ssid);
@@ -94,7 +93,7 @@ void reconnect() {
 
 void setup() {
   pinMode(BUILTIN_LED, OUTPUT);     // Initialize the BUILTIN_LED pin as an output
-  pinMode(CONNECTED_FAN, OUTPUT);
+  pinMode(CONNECTED_FAN, OUTPUT);   // Initialize CONNECTED_FAN  - GOIP D2 - as an output
   Serial.begin(115200);
   setup_wifi();
   client.setServer(mqtt_server, 1883);
