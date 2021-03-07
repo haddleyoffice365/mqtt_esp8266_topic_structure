@@ -9,7 +9,7 @@ static String strThingName(THING_NAME);
 
 const char* ssid = "<WIFI NAME>";
 const char* password = "<WIFI PASSWORD>"
-const char* mqtt_server = "192.168.1.5";
+const char* mqtt_server = "<MQTT BROKER ADDRESS>";
 const int CONNECTED_FAN = 4; // GOIP D2
 
 #define DHTTYPE DHT11   // DHT 11
@@ -33,7 +33,6 @@ PubSubClient client(espClient);
 unsigned long lastMsg = 0;
 #define MSG_BUFFER_SIZE	(50)
 char msg[MSG_BUFFER_SIZE];
-// int value = 0;
 
 void setup_wifi() {
 
@@ -82,14 +81,12 @@ void callback(char* topic, byte* payload, unsigned int length) {
     }
   }
 
-
 }
 
 void reconnect() {
   // Loop until we're reconnected
   while (!client.connected()) {
     Serial.print("Attempting MQTT connection...");
-
 
     String fullpathThingName = "cmd/hvac/building3/floor2/confroom2/" + strThingName + "/+";
 
@@ -181,15 +178,7 @@ void loop() {
 
     // SENSOR READ END
 
-
     lastMsg = now;
-    // ++value;
-    /*snprintf (msg, MSG_BUFFER_SIZE, "%1f", t);
-    Serial.print("Publish message: ");
-    Serial.println(msg);*/
-
-
-
-
+  
   }
 }
